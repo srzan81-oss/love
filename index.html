@@ -104,7 +104,11 @@ const pages=[
 
 `<img src="Cristina.jpeg" class="photo">
 <div class="name">Cristina</div>
-<h2>I didn’t know how to say this directly…</h2>
+<h2>Before you continue…
+this might be the strangest message you receive today.
+
+But I promise it's worth 60 seconds of your life.
+</h2>
 <p>so I made something for you.</p>
 <button onclick="playMusic();next()">Continue</button>`,
 
@@ -119,9 +123,29 @@ Hindi lang kaibigan.<br>
 Naging espesyal ka sa akin.</p>
 <button onclick="next()">Next</button>`,
 
+`<h2>Okay… I need to ask you something important.</h2>
+<p>But promise you won’t laugh first.</p>
+<button onclick="next()">I promise</button>`,
+ 
+`<h2>Be honest...</h2>
+<p>Do you think I'm a good person?</p>
+
+<button onclick="next()">Yes 🙂</button>
+<br><br>
+<button id="noBtn" onmouseover="moveNo()">No 😜</button>`,
+ 
+`<h2>Hey! Why are you trying to press No 😂</h2>
+<p>Fine… I’ll ask the real question now.</p>
+<button onclick="next()">Okay</button>`,
+ 
 `<h2>I like you.</h2>
-<p>More than I planned. More than I expected.</p>
+<p>And I’ve liked you for longer than I admit.</p>
 <p>Would you give me a chance?</p>
+
+<button onclick="yes()">Yes ❤️</button>
+<br><br>
+<button onclick="time()">I need time 🙂</button>`
+
 
 <button onclick="yes()">Yes ❤️</button>
 <br><br>
@@ -133,6 +157,13 @@ page++;
 document.getElementById("content").innerHTML=pages[page];
 }
 
+function moveNo(){
+const btn=document.getElementById("noBtn");
+const x=Math.random()*250-120;
+const y=Math.random()*200-100;
+btn.style.transform=`translate(${x}px,${y}px)`;
+}
+    
 function yes(){
 
 fetch(formspree,{
