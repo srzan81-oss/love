@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A message for you</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+
+.container{
+    max-width:420px;
+    padding:25px;
+    animation:fade 1.5s;
+}
+
+button{
+    margin-top:25px;
+    padding:12px 22px;
+    border:none;
+    border-radius:25px;
+    background:white;
+    color:#ff4f81;
+    font-weight:600;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.heart{
+    font-size:42px;
+    animation:beat 1s infinite;
+}
+
+@keyframes beat{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.25)}
+    100%{transform:scale(1)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="content"></div>
+
+<script>
+let page=0;
+
+const pages=[
+`<h2>I didn’t know how to say this directly…</h2>
+<p>so I made something for you.</p>
+<p><i>Hindi ko alam kung paano ito sasabihin nang harapan…<br>kaya gumawa ako ng isang bagay para sa’yo.</i></p>
+<button onclick="next()">Continue</button>`,
+
+`<p>We talk, we laugh, sometimes we argue…<br>
+but somehow my day always feels incomplete when I don’t hear from you.</p>
+<p>I tried to ignore it, but I can’t anymore.</p>
+
+<p><i>Nag-uusap tayo, nagtatawanan, minsan nagkakatampuhan…<br>
+pero parang kulang ang araw ko kapag hindi kita nakakausap.<br>
+Sinubukan kong balewalain, pero hindi ko na kaya.</i></p>
+
+<button onclick="next()">Next</button>`,
+
+`<p>Somewhere along the way…<br>
+you became important to me.<br>
+Not just a friend.<br>
+You became someone I truly care about.</p>
+
+<p><i>Sa paglipas ng panahon…<br>
+naging mahalaga ka sa akin.<br>
+Hindi lang kaibigan.<br>
+Naging espesyal ka sa akin.</i></p>
+
+<button onclick="next()">Next</button>`,
+
+`<h2>I like you.</h2>
+<p>More than I planned. More than I expected.</p>
+<p>Would you give me a chance?</p>
+
+<p><i>Gusto kita.<br>
+Higit pa sa inaasahan ko.<br>
+Bibigyan mo ba ako ng pagkakataon?</i></p>
+
+<button onclick="yes()">Yes ❤️</button>
+<br><br>
+<button onclick="time()">I need time 🙂</button>`
+];
+
+function next(){
+page++;
+document.getElementById("content").innerHTML=pages[page];
+}
+
+function yes(){
+document.getElementById("content").innerHTML=
+`<div class="heart">❤️</div>
+<h2>You just made me the happiest person today.</h2>
+<p>— Shrijan</p>`;
+}
+
+function time(){
+document.getElementById("content").innerHTML=
+`<h2>That’s okay.</h2>
+<p>I’ll wait. You’re worth it.</p>
+<p>— Shrijan</p>`;
+}
+
+document.getElementById("content").innerHTML=pages[0];
+</script>
+
+</body>
+</html>
