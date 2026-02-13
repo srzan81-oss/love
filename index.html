@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A message for you Cristina</title>
+<title>A message for Cristina</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -24,6 +24,12 @@ body{
     max-width:420px;
     padding:25px;
     animation:fade 1.5s;
+}
+
+.name{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:15px;
 }
 
 button{
@@ -63,36 +69,42 @@ button:hover{
 
 <body>
 
+<audio id="bgm" src="music.mp3" loop></audio>
+
 <div class="container" id="content"></div>
 
 <script>
+
+const formspree="PASTE-YOUR-FORMSPREE-LINK-HERE";
+
 let page=0;
 
+function playMusic(){
+document.getElementById("bgm").play();
+}
+
 const pages=[
-`<h2>I didn’t know how to say this directly…</h2>
+
+`<div class="name">Cristina</div>
+<h2>I didn’t know how to say this directly…</h2>
 <p>so I made something for you.</p>
-<button onclick="next()">Continue</button>`,
+<p><i>Hindi ko alam kung paano ito sasabihin nang harapan…<br>kaya gumawa ako ng isang bagay para sa’yo.</i></p>
+<button onclick="playMusic();next()">Continue</button>`,
 
-`<p><i>Nag-uusap tayo, nagtatawanan, minsan nagkakatampuhan…<br>
-pero parang kulang ang araw ko kapag hindi kita nakakausap.<br>
-Sinubukan kong balewalain, pero hindi ko na kaya.</i></p>
-
+`<p>We talk, we laugh, sometimes we argue…<br>
+but somehow my day always feels incomplete when I don’t hear from you.</p>
+<p>I tried to ignore it, but I can’t anymore.</p>
 <button onclick="next()">Next</button>`,
 
 `<p>Somewhere along the way…<br>
 you became important to me.<br>
 Not just a friend.<br>
 You became someone I truly care about.</p>
-
-
-
 <button onclick="next()">Next</button>`,
 
 `<h2>I like you.</h2>
 <p>More than I planned. More than I expected.</p>
 <p>Would you give me a chance?</p>
-
-
 
 <button onclick="yes()">Yes ❤️</button>
 <br><br>
@@ -105,6 +117,16 @@ document.getElementById("content").innerHTML=pages[page];
 }
 
 function yes(){
+
+fetch(formspree,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:"Cristina",
+answer:"YES"
+})
+});
+
 document.getElementById("content").innerHTML=
 `<div class="heart">❤️</div>
 <h2>You just made me the happiest person today.</h2>
@@ -119,6 +141,7 @@ document.getElementById("content").innerHTML=
 }
 
 document.getElementById("content").innerHTML=pages[0];
+
 </script>
 
 </body>
