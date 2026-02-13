@@ -18,6 +18,7 @@ body{
     align-items:center;
     color:white;
     text-align:center;
+    overflow:hidden;
 }
 
 .container{
@@ -29,7 +30,16 @@ body{
 .name{
     font-size:28px;
     font-weight:700;
-    margin-bottom:15px;
+    margin-top:10px;
+}
+
+.photo{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid white;
+    box-shadow:0 6px 18px rgba(0,0,0,0.3);
 }
 
 button{
@@ -45,24 +55,20 @@ button{
     box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
 
-button:hover{
-    transform:scale(1.05);
+.heart{
+    position:fixed;
+    font-size:24px;
+    animation:float 3s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh) scale(0.5);opacity:1;}
+    to{transform:translateY(-10vh) scale(1.5);opacity:0;}
 }
 
 @keyframes fade{
     from{opacity:0;transform:translateY(30px)}
     to{opacity:1;transform:translateY(0)}
-}
-
-.heart{
-    font-size:42px;
-    animation:beat 1s infinite;
-}
-
-@keyframes beat{
-    0%{transform:scale(1)}
-    50%{transform:scale(1.25)}
-    100%{transform:scale(1)}
 }
 </style>
 </head>
@@ -76,19 +82,30 @@ button:hover{
 <script>
 
 const formspree="PASTE-YOUR-FORMSPREE-LINK-HERE";
-
 let page=0;
 
 function playMusic(){
 document.getElementById("bgm").play();
 }
 
+function createHearts(){
+for(let i=0;i<25;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*2+2)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),3000);
+}
+}
+
 const pages=[
 
-`<div class="name">Cristina</div>
+`<img src="cristina.jpg" class="photo">
+<div class="name">Cristina</div>
 <h2>I didn’t know how to say this directly…</h2>
 <p>so I made something for you.</p>
-<p><i>Hindi ko alam kung paano ito sasabihin nang harapan…<br>kaya gumawa ako ng isang bagay para sa’yo.</i></p>
 <button onclick="playMusic();next()">Continue</button>`,
 
 `<p>We talk, we laugh, sometimes we argue…<br>
@@ -127,9 +144,10 @@ answer:"YES"
 })
 });
 
+createHearts();
+
 document.getElementById("content").innerHTML=
-`<div class="heart">❤️</div>
-<h2>You just made me the happiest person today.</h2>
+`<h2>You just made me the happiest person today.</h2>
 <p>— Shrijan</p>`;
 }
 
@@ -137,7 +155,7 @@ function time(){
 document.getElementById("content").innerHTML=
 `<h2>That’s okay.</h2>
 <p>I’ll wait. You’re worth it.</p>
-<p>— Shrijan (Momo)</p>`;
+<p>— Shrijan</p>`;
 }
 
 document.getElementById("content").innerHTML=pages[0];
