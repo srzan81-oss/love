@@ -102,49 +102,54 @@ setTimeout(()=>heart.remove(),3000);
 
 const pages=[
 
-`<img src="Cristina.jpeg" class="photo">
+`<img src="cristina.jpg" class="photo">
 <div class="name">Cristina</div>
-<h2>Before you continue…
-this might be the strangest message you receive today.
-But I promise it's worth 60 seconds of your life.
-</h2>
-<p>so I made something for you.</p>
-<button onclick="playMusic();next()">Continue</button>`,
 
-`<p>We talk, we laugh, sometimes we argue…<br>
-but somehow my day always feels incomplete when I don’t hear from you.</p>
-<p>I tried to ignore it, but I can’t anymore.</p>
-<button onclick="next()">Next</button>`,
+<h2>Initializing…</h2>
+<p>Scanning personality… 12%...</p>
+<button onclick="playMusic();next()">Allow scan</button>`,
 
-`<p>Sa paglipas ng panahon…<br>
-naging mahalaga ka sa akin.<br>
-Hindi lang kaibigan.<br>
-Naging espesyal ka sa akin.</p>
-<button onclick="next()">Next</button>`,
+`<h2>38% Complete</h2>
+<p>Checking kindness level…</p>
+<p>Result: dangerously sweet human detected.</p>
+<button onclick="next()">Continue</button>`,
 
-`<h2>Okay… I need to ask you something important.</h2>
-<p>But promise you won’t laugh first.</p>
-<button onclick="next()">I promise</button>`,
- 
-`<h2>Be honest...</h2>
-<p>Do you think I'm a good person?</p>
+`<h2>74% Complete</h2>
+<p>Analyzing smile…</p>
+<p>Warning: smile may cause distraction and loss of focus.</p>
+<button onclick="next()">Continue</button>`,
 
-<button onclick="next()">Yes 🙂</button>
+`<h2>Almost done…</h2>
+<p>Final question required for system accuracy.</p>
+<button onclick="next()">Answer question</button>`,
+
+`<h2>Be honest 😌</h2>
+<p>If someone secretly liked you…</p>
+<p>what would you do?</p>
+
+<button onclick="next()">Give him a chance</button>
 <br><br>
-<button id="noBtn" onmouseover="moveNo()">No 😜</button>`,
- 
-`<h2>Hey! Why are you trying to press No 😂</h2>
-<p>Fine… I’ll ask the real question now.</p>
-<button onclick="next()">Okay</button>`,
- 
-`<h2>I like you.</h2>
-<p>And I’ve liked you for longer than I admit.</p>
-<p>Would you give me a chance?</p>
+<button id="noBtn" onmouseover="moveNo()">Ignore him 😜</button>`,
+
+`<h2>Heyyy 😂</h2>
+<p>Why are you trying to ignore him?</p>
+<p>Okay fine… system will now reveal the truth.</p>
+<button onclick="next()">Reveal</button>`,
+
+`<h2>Truth is…</h2>
+<p>The person is me.</p>
+<p>I tried to hide it for a long time.</p>
+<button onclick="next()">Continue</button>`,
+
+`<h2>I really like you, Cristina.</h2>
+<p>More than I planned… more than I expected.</p>
+<p>Every day I find another reason to care about you.</p>
 
 <button onclick="yes()">Yes ❤️</button>
 <br><br>
 <button onclick="time()">I need time 🙂</button>`
 ];
+
 
 function next(){
 page++;
@@ -170,7 +175,31 @@ answer:"YES"
 });
 
 createHearts();
+fireworks();
+    
+function fireworks(){
+for(let i=0;i<60;i++){
+let spark=document.createElement("div");
+spark.innerHTML="✨";
+spark.style.position="fixed";
+spark.style.left="50%";
+spark.style.top="50%";
+spark.style.fontSize="22px";
+spark.style.pointerEvents="none";
 
+let angle=Math.random()*360;
+let distance=Math.random()*250;
+
+spark.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${Math.cos(angle)*distance}px,${Math.sin(angle)*distance}px)`,opacity:0}
+],{duration:1200});
+
+document.body.appendChild(spark);
+setTimeout(()=>spark.remove(),1200);
+}
+}
+    
 document.getElementById("content").innerHTML=
 `<h2>You just made me the happiest person today.</h2>
 <p>— Shrijan (momo)</p>`;
